@@ -50,7 +50,7 @@ The `Topology` configuration is one of the core configuration types for
 `phenix`, as it describes a network topology to be deployed in `minimega` that
 can be used by one or more experiments to be executed.
 
-A topology is comprised of one or more _nodes_ (which is a VM or container), each
+A topology is comprised of one or more _nodes_, which is a VM, each
 including system descriptions and configurations, as well as any networking
 settings required to connect all of the nodes in a topology together. This
 configuration becomes the basis for most of the minimega commands later created
@@ -60,6 +60,7 @@ in the relevant minimega startup script.
 
 If left unmodified or unset, the following are the default settings for each
 node:
+
 - memory will be set to 512MB
 - snapshot will be set to true
 - no network settings will be included
@@ -86,10 +87,11 @@ Optional values for a node in the topology configuration can include:
 - file injections
 - labels (typically used by phenix apps)
 - routing ruleset(s)
+- delay start (e.g., user, time, or command and control triggered)
 
 ### Example
 
-A contrived, four node example -- three VMs and a router -- is given below, and is
+A contrived, four node example &mdash; three VMs and a router &mdash; is given below, and is
 driven by the [topology schema described here](schema.md#topology-schema).
 
 ```
@@ -103,6 +105,8 @@ spec:
     general:
       hostname: host-00
       snapshot: true
+    delay:
+      user: true
     hardware:
       os_type: linux
       drives:
@@ -131,6 +135,8 @@ spec:
     general:
       hostname: host-01
       snapshot: true
+    delay:
+      time: 5m
     hardware:
       os_type: linux
       drives:
@@ -163,6 +169,9 @@ spec:
     general:
       hostname: AD1
       snapshot: true
+    delay:
+      c2:
+      - hostname: host-00
     hardware:
       os_type: windows
       drives:
@@ -537,7 +546,7 @@ There are two ways to create a new config:
 
 ### Editor Window
 
-The editor window allows direct editing of an existing or new config file. 
+The editor window allows direct editing of an existing or new config file.
 
 * It is possible to edit a file as YAML or JSON by selecting the relevant radio
   button under `File Format`.
