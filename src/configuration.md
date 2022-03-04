@@ -590,25 +590,26 @@ restored to the store.
 
 ## Builder
 
-The Builder app is an external app, which allows users to build either a
-topology or experiment configuration using a graphical interface. It is based
-off the minibuilder app in minimega. Users can access the Builder app via the
-Builder tab in the phenix UI.
+The Builder app is an external app that allows users to build either topology or
+experiment configuration using a graphical interface. It is based on the
+minibuilder app in minimega. Users can access the Builder app via the Builder
+tab in the phenix UI.
 
-### Creating a Topology
+### Creating or Editing a Topology
 
 When Builder opens, it does so in a new configuration. If a user wanted to open
 an existing configuration, they are available in the File menu through the
 Import from phēnix or Import from Disk selections.
 
-VM hosts or networking components can be added by selecting the relevant image
+A user can add VM hosts or networking components by selecting the relevant image
 on the left side of the Builder canvas.
 
   ![screenshot](images/components.png){: width=150 .center}
 
-Each time a configuration is saved to phēnix it is available to open. In fact, a
-configuration created in Builder can only be edited in Builder. There are two
-options for editing an existing configuration created in Builder.
+Each time a configuration is saved to phēnix, it is available to select from
+Import from phēnix in the File menu. A can only edit a configuration created in
+Builder while in the Builder app. There are two options for editing an existing
+configuration created in Builder.
 
   ![screenshot](images/file.png){: width=150 .center}
 
@@ -627,12 +628,17 @@ canvas.
 
 Other values will be auto-generated but can be customized by clicking on a
 target node and making changes in the dialogue presented in the Builder UI. It
-is worth noting that a user can set a single node values and then copy and paste
-that node multiple times; those customized values will be carried into each node
+is worth noting that a user can set a single node value and then copy and paste
+that node multiple times; the customized values will be extended to each node
 that is pasted in the Builder canvas.
 
-While Scenarios are not apart of the Builder environment, they can be added to a
-topology. When a user selects Save to phēnix, there will be a pulldown presented
+While Scenarios are not a part of the Builder environment, a user can add them
+to a topology. When a user selects Save to phēnix, a pulldown will be presented
 with available Scenarios from the phēnix store.
 
   ![screenshot](images/save.png){: width=150 .center}
+
+When a Scenario is selected, Builder will write the topology configuration to
+the phēnix store and an experiment configuration. When a Scenario is not
+specified, the Builder app will save just the topology. The user will then need
+to create an experiment in the phēnix UI.
