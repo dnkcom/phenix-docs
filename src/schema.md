@@ -192,7 +192,7 @@ Node:
           nullable: true
     delay:
       type: object
-      title: TODO
+      title: Delayed start
       default: null
       properties:
         user:
@@ -204,7 +204,6 @@ Node:
           type: string
           title: Timer triggered boot
           minLength: 2
-          default: TODO
           example: 5m
         c2:
           type: array
