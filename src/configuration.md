@@ -89,6 +89,23 @@ Optional values for a node in the topology configuration can include:
 - routing ruleset(s)
 - delay start (e.g., user, time, or command and control triggered)
 
+#### Delay Start
+
+It is possible to delay the start of a VM with the `delay` value. There are
+three options available to set, only one can be set:
+
+1. `user` is a boolean value and when set to `true`, the VM will require a
+manual start either through the phēnix UI or command line (the latter can be
+by phēnix or minimega commands).
+
+1. `time` is a string that is set as a delay in minutes; e.g., `5m`.
+
+1. `c2` requires minimega command and control. Note in the example below that
+the hostname `AD1` will be delayed starting until the VM `host-00` has started
+and checked in with minimega command and control. It is possible to have
+multiple hostnames included. `useUUID` is an additional boolean value setting,
+per hostname, that will wait watch for the UUID instead of the hostname.
+
 ### Example
 
 A contrived, four node example &mdash; three VMs and a router &mdash; is given below, and is
