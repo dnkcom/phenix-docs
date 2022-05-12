@@ -24,7 +24,7 @@ $> phenix exp list
 Clicking the `stopped` button will start the experiment; similarly the `started`
 button will stop the experiment. A progress bar is used to update the progress
 of starting an experiment. During the update to the experiment -- starting or
-stopping -- it will not be accessible or available to delete. 
+stopping -- it will not be accessible or available to delete.
 
 ### From the Command Line Binary
 
@@ -80,13 +80,48 @@ Global Flags:
 Use "phenix experiment [command] --help" for more information about a command.
 ```
 
+### Accessing Files Generated Within phēnix
+
+#### From the Web-UI
+
+A Stopped or Running experiment UI component has two tabs:
+
+1. VMs &mdash; a table of available VMs (this will not include any VMs set to
+do-not-boot)
+1. Files &mdash; a table of available files
+    * These include any VM snapshots, pack captures, or output from a Scorch app
+
+In the Files tab, it is possible to sort on filename or filter on file category.
+A category is used to describe the type of file. When filtering on a category,
+it is possible to return to the whole table or clear the category filter by
+clicking the 'X' button in the input box for filtering on the filename. Hovering
+over the 'info' icon in the row of a file will output in a tooltip the full path
+of the file's location on the phēnix head node. In addition, the download icon
+will download the file to the user's local storage device.
+
+#### From the Command Line on the phēnix Head node
+
+- VM snapshots and packet captures are saved in `/phenix/images/files/experiment_name`.
+- Scorch app output will be saved to `/phenix/experiments/experiment_name/scorch`.
+
+### Assigning VLAN Alias to VLAN ID
+
+### From the Web-UI
+
+In a Stopped experiment UI component, assigning a VLAN ID to an existing VLAN
+alias is possible. This is done by clicking on the 'network' button available
+before or to the left of the filter VM name input box. A modal will be presented
+with known VLAN aliases to assign a VLAN number. This will write the assignment
+to the experiment's configuration file; it can be reset in that file via the
+phēnix UI or command line.
+
 ## Create a New Experiment
 
 ### From the Web-UI
 
 ![screenshot](images/create_exp.png){: width=800 .center}
 
-Click the `+` button to the right of the filter field. 
+Click the `+` button to the right of the filter field.
 
 ![screenshot](images/create_exp_dia.png){: width=400 .center}
 
@@ -110,8 +145,8 @@ The `phenix exp create --help` command will output:
 ```
 Create an experiment
 
-  Used to create an experiment from an existing configuration; can be a 
-  topology, or topology and scenario. (Optional are the arguments for scenario 
+  Used to create an experiment from an existing configuration; can be a
+  topology, or topology and scenario. (Optional are the arguments for scenario
   or base directory.)
 
 Usage:

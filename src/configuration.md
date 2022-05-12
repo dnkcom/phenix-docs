@@ -712,3 +712,27 @@ When a scenario is selected, Builder will write the topology configuration to
 the phēnix store and an experiment configuration. When a scenario is not
 specified, the Builder app will save the topology configuration only. The user
 will then need to create an experiment in the phēnix UI.
+
+# Continuous Integration and Deployment
+
+It is possible to maintain phēnix configurations in a version control system
+such as `git` and connect to the phēnix application through a _runner_. For
+example, a user could continuously edit configurations or file injects for an
+experiment, and when committed to a branch repository, the _runner_ can update
+the phēnix store and perform other actions on the experiment.
+
+Actions currently supported include (each are set in `.phenix.yml` file in the
+branch root directory):
+
+* Stop the experiment, update the relevant files, and start the experiment
+* Do nothing to the state of the experiment (i.e., running or stopped)
+* Assign VLAN alias to a VLAN ID
+
+Naming the topology and scenario configurations requires the use of a templated
+variable `{{BRANCH_NAME}}`. The variable will be replaced with the branch name
+as the configuration is added to the phēnix store. For example, a topology named
+`{{BRANCH_NAME}}-topology` in the `foo` branch will appear as `foo-topology` in
+the phēnix store.
+
+> TODO: should add more detail on hidden file and an example of connecting a
+runner. Awaiting updated presentation from the walk through briefing.
